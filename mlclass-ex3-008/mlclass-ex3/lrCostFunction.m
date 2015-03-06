@@ -37,7 +37,7 @@ grad = zeros(size(theta));
 %
 
 
-J = 1 / m * sum(log(sigmoid(X * theta)) * y - log(1 - sigmoid(X * theta)) * (1 - y)) + lambda / (2*m) * (sum(theta.^2) - theta(1)^2);;
+J = 1 / m * sum((-y) .* log(sigmoid(X * theta)) - (1 - y) .* log(1 - sigmoid(X * theta))) + lambda / (2*m) * (sum(theta.^2) - theta(1)^2);;
 
 gradDelta = lambda / m * theta;
 gradDelta(1) = 0;
