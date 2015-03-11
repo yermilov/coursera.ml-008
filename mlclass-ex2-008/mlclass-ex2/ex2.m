@@ -26,6 +26,28 @@ clear ; close all; clc
 data = load('ex2data1.txt');
 X = data(:, [1, 2]); y = data(:, 3);
 
+%% ==================== Part 1: Plotting ====================
+%  We start the exercise by first plotting the data to understand the 
+%  the problem we are working with.
+
+fprintf(['Plotting data with + indicating (y = 1) examples and o ' ...
+         'indicating (y = 0) examples.\n']);
+
+plotData(X, y);
+
+% Put some labels 
+hold on;
+% Labels and Legend
+xlabel('Exam 1 score')
+ylabel('Exam 2 score')
+
+% Specified in plot order
+legend('Admitted', 'Not admitted')
+hold off;
+
+fprintf('\nProgram paused. Press enter to continue.\n');
+pause;
+
 
 %% ============ Part 2: Compute Cost and Gradient ============
 %  In this part of the exercise, you will implement the cost and gradient
@@ -68,6 +90,22 @@ options = optimset('GradObj', 'on', 'MaxIter', 400);
 fprintf('Cost at theta found by fminunc: %f\n', cost);
 fprintf('theta: \n');
 fprintf(' %f \n', theta);
+
+% Plot Boundary
+plotDecisionBoundary(theta, X, y);
+
+% Put some labels 
+hold on;
+% Labels and Legend
+xlabel('Exam 1 score')
+ylabel('Exam 2 score')
+
+% Specified in plot order
+legend('Admitted', 'Not admitted')
+hold off;
+
+fprintf('\nProgram paused. Press enter to continue.\n');
+pause;
 
 %% ============== Part 4: Predict and Accuracies ==============
 %  After learning the parameters, you'll like to use it to predict the outcomes
