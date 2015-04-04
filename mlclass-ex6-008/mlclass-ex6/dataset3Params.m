@@ -24,9 +24,21 @@ sigma = 0.3;
 %
 
 
+options =  [0 0.001 0.003 0.01 0.03 0.1 0.3 1 3 10]';
+minError = +Inf;
 
-
-
+for cIndex = 1:length(options)
+	for sigmaIndex = 1:length(options)
+		model = svmTrain(X, y, options(cIndex), @(x1, x2) gaussianKernel(x1, x2, options(sigmaIndex)));
+		predictions = svmPredict(model, Xval);
+		error = mean(double(predictions ~= yval));
+		if (error < minError)
+			minError = error;
+			C = options(cIndex);
+			sigma = options(sigmaIndex);
+		end
+	end
+end
 
 
 % =========================================================================
