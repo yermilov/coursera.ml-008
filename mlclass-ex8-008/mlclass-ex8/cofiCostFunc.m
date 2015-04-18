@@ -56,6 +56,13 @@ end
 
 J = J + lambda / 2 * (sum(sum(X.^2)) + sum(sum(Theta.^2)));
 
+for i = 1:num_movies
+	X_grad(i, :) = X_grad(i, :) + lambda * X(i, :);
+end
+for j = 1:num_users
+	Theta_grad(j, :) = Theta_grad(j, :) + lambda * Theta(j, :);
+end
+
 
 % =============================================================
 
